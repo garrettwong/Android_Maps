@@ -135,8 +135,9 @@ public class MapsActivity extends FragmentActivity implements
     @Override
     public void onLocationChanged(Location location) {
         if (!initialLocationSet) {
-            Toast.makeText(getApplicationContext(), "Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude(),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Latitude:" + location.getLatitude() +
+                                                    ", Longitude:" + location.getLongitude(),
+                                                    Toast.LENGTH_SHORT).show();
 
             LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
@@ -183,10 +184,13 @@ public class MapsActivity extends FragmentActivity implements
         LatLng napa = new LatLng(38.2975, -122.2869);
         mMap.addMarker(new MarkerOptions().position(napa).title("Marker in Napa, CA"));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(napa));
+        LatLng irvine = new LatLng(33.6846, -117.8265);
+        prev = irvine;
+        mMap.addMarker(new MarkerOptions().position(irvine).title("Marker in Irvine, CA"));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(irvine));
 
         mMap.setOnPoiClickListener(this);
-
     }
 
 //    private void setCurrentLocation() {
@@ -238,7 +242,6 @@ public class MapsActivity extends FragmentActivity implements
 
         // update prev
         prev = clickedLocation;
-
 
         Toast.makeText(getApplicationContext(), "Current distance: " + totalDistance + " km.\n" +
                         "Clicked: " +
